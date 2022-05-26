@@ -1,4 +1,4 @@
-# Sprinklr Tasks
+# Sprinklr Tasks repository
 
 ### Conains all the tasks assigned
 
