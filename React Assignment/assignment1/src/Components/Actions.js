@@ -1,16 +1,24 @@
 import React from "react";
-import Button from "./UndoButton";
+import UndoButton from "./UndoButton";
+import RedoButton from "./RedoButton";
 function Actions({ stackHandler, undoStack, redoStack, handleMatrixColor }) {
   return (
     <div>
-      <Button
+      <UndoButton
         stack={undoStack}
         handleMatrixColor={handleMatrixColor}
         stackHandler={stackHandler}
         redoStack={redoStack}
       >
         undo
-      </Button>
+      </UndoButton>
+      <RedoButton
+        stack={redoStack}
+        handleMatrixColor={handleMatrixColor}
+        stackHandler={stackHandler}
+      >
+        undo
+      </RedoButton>
     </div>
   );
 }

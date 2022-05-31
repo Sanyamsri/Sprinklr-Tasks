@@ -6,15 +6,15 @@ function Button({ stack, stackHandler, handleMatrixColor }) {
       const lastOperation = stack[stack.length - 1];
       handleMatrixColor({
         idx: lastOperation.idx,
-        newColor: lastOperation.color1,
+        newColor: lastOperation.color2,
       });
-      stackHandler({ type: "add", stack: "redo" }, stack[stack.length - 1]);
-      stackHandler({ type: "remove", stack: "undo" });
+      stackHandler({ type: "add", stack: "undo" }, stack[stack.length - 1]);
+      stackHandler({ type: "remove", stack: "redo" });
     }
   };
   return (
     <button disabled={stack.length === 0} onClick={onClickHandler}>
-      undo
+      Redo
     </button>
   );
 }
