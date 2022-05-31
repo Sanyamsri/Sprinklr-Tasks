@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Cell from "./Cell";
 
 function Grid({ ColorSelected }) {
-  const nRows = 6,
-    nCols = 6;
+  const nRows = 32,
+    nCols = 32;
   const [matrix, setMatrix] = useState(
     Array.from({ length: nRows * nCols }, () => "#FFFFFF")
   );
@@ -15,7 +15,7 @@ function Grid({ ColorSelected }) {
     });
   };
   return (
-    <div>
+    <div className="grid-container">
       {matrix.map((value, idx) => (
         <Cell
           key={idx}

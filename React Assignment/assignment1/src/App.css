@@ -10,17 +10,24 @@
 .colorPicker {
   margin: 20px;
 }
+.grid-container {
+  display: grid;
+  box-sizing: border-box;
+  height: 512px;
+  width: 512px;
+  grid-template-columns: repeat(32, 16px);
+  border: solid black 1px;
+}
+
 .cell {
   display: inline-block;
-  width: 32px;
-  height: 32px;
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
   border: solid 1px #888;
-  border-radius: 6px;
-  margin: 4px;
 }
 .highlight {
-  width: 30px;
-  height: 30px;
-  border-width: 2px;
+  width: 16px;
+  height: 16px;
   background-color: #afa;
 }

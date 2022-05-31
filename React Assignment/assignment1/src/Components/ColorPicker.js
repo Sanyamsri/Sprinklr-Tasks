@@ -6,7 +6,7 @@ function ColorPicker({ handleChangeColor }) {
   };
 
   return (
-    <div className="colorPicker">
+    <div className="colorPicker center">
       <CirclePicker onChangeComplete={handleChangeComplete} />
     </div>
   );
