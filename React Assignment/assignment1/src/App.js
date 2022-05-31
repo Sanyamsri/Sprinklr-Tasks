@@ -1,22 +1,19 @@
 import "./App.css";
 import { React, useState } from "react";
-import { CirclePicker } from "react-color";
+import ColorPicker from "./Components/ColorPicker";
+import Grid from "./Components/Grid";
 function App() {
-  const [displayColorPicker, setDisplayColorPicker] = useState(false);
+  const [ColorSelected, setColorSelected] = useState("#f44336");
 
-  const handleClick = () => {
-    setDisplayColorPicker((prevState) => !prevState);
-  };
-  const handleChangeComplete = (color) => {
-    console.log(color.hex);
+  const handleChangeColor = (newColor) => {
+    setColorSelected(newColor);
   };
 
   return (
-    <div className="App">
-      <button onClick={handleClick}>Pick Color</button>
-      {displayColorPicker ? (
-        <CirclePicker onChangeComplete={handleChangeComplete} />
-      ) : null}
+    <div className="App center">
+      Pixel editor
+      <ColorPicker handleChangeColor={handleChangeColor} />
+      <Grid ColorSelected={ColorSelected} />
     </div>
   );
 }

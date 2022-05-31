@@ -1,4 +1,26 @@
 .App {
   text-align: center;
+  font-size: larger;
+}
+.center {
+  display: grid;
+  justify-content: center;
   padding: 20px;
+}
+.colorPicker {
+  margin: 20px;
+}
+.cell {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: solid 1px #888;
+  border-radius: 6px;
+  margin: 4px;
+}
+.highlight {
+  width: 30px;
+  height: 30px;
+  border-width: 2px;
+  background-color: #afa;
 }
