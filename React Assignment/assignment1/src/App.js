@@ -57,6 +57,10 @@ function App() {
       if (action.stack === "undo") setundoStack(addStack);
       if (action.stack === "redo") setredoStack(addStack);
     }
+    if (action.type === "clear") {
+      if (action.stack === "undo") setundoStack([]);
+      if (action.stack === "redo") setredoStack([]);
+    }
   };
 
   return (
@@ -76,7 +80,11 @@ function App() {
         redoStack={redoStack}
         handleMatrixColor={handleMatrixColor}
       />
-      <ResetButton matrix={matrix} handleMatrixColor={handleMatrixColor} />
+      <ResetButton
+        matrix={matrix}
+        handleMatrixColor={handleMatrixColor}
+        stackHandler={stackHandler}
+      />
     </div>
   );
 }
