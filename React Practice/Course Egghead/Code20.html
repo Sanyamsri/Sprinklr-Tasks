@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.min.js"
+      integrity="sha512-ssNhh7jlzc+K93ckIlSXFHHz6fSFv0l619WOv8xbFNRbFOujbasb42LVMOggDrQR1ScJncoWb+KAJx1uF3ipjw=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
+
+    <script type="text/babel">
+      function App() {
+        const [username, setUsername] = React.useState("");
+        const isLowerCase = username === username.toLowerCase();
+        const error = isLowerCase ? null : "Username must be lower case";
+
+        function handleSubmit(event) {
+          event.preventDefault();
+          alert(`You entered: ${username}`);
+        }
+
+        function handleChange(event) {
+          setUsername(event.target.value);
+        }
+
+        return (
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="usernameInput">Username:</label>
+              <input id="usernameInput" type="text" onChange={handleChange} />
+            </div>
+            <div style={{ color: "red" }}>{error}</div>
+            <button disabled={Boolean(error)} type="submit">
+              Submit
+            </button>
+          </form>
+        );
+      }
+
+      function renderApp() {
+        ReactDOM.render(<App />, document.getElementById("root"));
+      }
+      renderApp();
+    </script>
+  </body>
+</html>
