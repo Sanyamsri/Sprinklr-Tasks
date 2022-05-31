@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 
 function Cell({ backgroundColor, idx, handleMatrixColor, ColorSelected }) {
-  const [highlighted, setHighlighted] = useState(false);
   const [hoverColor, sethoverColor] = useState("#FFFFFF");
+
   const onClickHandler = () => {
-    if (!highlighted) setHighlighted((prevState) => !prevState);
     handleMatrixColor({ idx, newColor: ColorSelected });
   };
+
   const onMouseEnterHandler = () => {
     sethoverColor(ColorSelected);
   };
+
   const onMouseLeaveHandler = () => {
     sethoverColor("#FFFFFF");
   };
 
   return (
     <div
-      className={`cell ${highlighted ? "highlight" : ""}`}
+      className="cell"
       onClick={onClickHandler}
       onMouseEnter={onMouseEnterHandler}
       onMouseLeave={onMouseLeaveHandler}
