@@ -15,6 +15,7 @@ function Cell({
       { type: "add", stack: "undo" },
       { idx, color1: backgroundColor, color2: ColorSelected }
     );
+    stackHandler({ type: "clear", stack: "redo" });
   };
 
   const onMouseEnterHandler = () => {
