@@ -1,10 +1,20 @@
 import React, { useState } from "react";
 
-function Cell({ backgroundColor, idx, handleMatrixColor, ColorSelected }) {
+function Cell({
+  backgroundColor,
+  idx,
+  handleMatrixColor,
+  ColorSelected,
+  stackHandler,
+}) {
   const [hoverColor, sethoverColor] = useState("#FFFFFF");
 
   const onClickHandler = () => {
     handleMatrixColor({ idx, newColor: ColorSelected });
+    stackHandler(
+      { type: "add", stack: "undo" },
+      { idx, color1: backgroundColor, color2: ColorSelected }
+    );
   };
 
   const onMouseEnterHandler = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 
-function Button({ matrix, handleMatrixColor }) {
+function ResetButton({ matrix, handleMatrixColor }) {
   const onClickHandler = () => {
     matrix.forEach((ele, idx) => {
       handleMatrixColor({ idx, newColor: "#ffffff" });
@@ -15,4 +15,4 @@ function Button({ matrix, handleMatrixColor }) {
   );
 }
 
-export default Button;
+export default ResetButton;
