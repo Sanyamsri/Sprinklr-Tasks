@@ -1,41 +1,20 @@
 import "./styles/App.css";
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import ColorPicker from "./components/ColorPicker";
 import Grid from "./components/Grid";
 import ResetButton from "./components/ResetButton";
 import Actions from "./components/Actions";
 import { useStack } from "./hooks/useStack";
+import { useMatrix } from "./hooks/useMatrix";
 
 function App() {
   const [ColorSelected, setColorSelected] = useState("#ffffff");
-
-  const nRows = 32,
-    nCols = 32;
-
-  const [matrix, setMatrix] = useState(() => {
-    if (localStorage.getItem("matrix"))
-      return JSON.parse(localStorage.getItem("matrix"));
-    return Array.from({ length: nRows * nCols }, () => "#FFFFFF");
-  });
-
-  const undoStack = useStack([]);
-  const redoStack = useStack([]);
-
-  useEffect(() => {
-    localStorage.setItem("matrix", JSON.stringify(matrix));
-  }, [matrix]);
-
   const handleChangeColor = (newColor) => {
     setColorSelected(newColor);
   };
-
-  const handleMatrixColor = ({ idx, newColor }) => {
-    setMatrix((prevState) => {
-      const copy = [...prevState];
-      copy[idx] = newColor;
-      return copy;
-    });
-  };
+  const undoStack = useStack([]);
+  const redoStack = useStack([]);
+  const { matrix, handleCellColorChange } = useMatrix();
 
   return (
     <div className="App center">
@@ -44,18 +23,18 @@ function App() {
       <Grid
         ColorSelected={ColorSelected}
         matrix={matrix}
-        handleMatrixColor={handleMatrixColor}
+        handleCellColorChange={handleCellColorChange}
         undoStack={undoStack}
         redoStack={redoStack}
       />
       <Actions
         undoStack={undoStack}
         redoStack={redoStack}
-        handleMatrixColor={handleMatrixColor}
+        handleCellColorChange={handleCellColorChange}
       />
       <ResetButton
         matrix={matrix}
-        handleMatrixColor={handleMatrixColor}
+        handleCellColorChange={handleCellColorChange}
         undoStack={undoStack}
         redoStack={redoStack}
       />

@@ -1,9 +1,9 @@
 import React from "react";
 
-function Button({ undoStack, handleMatrixColor, redoStack }) {
+function Button({ undoStack, handleCellColorChange, redoStack }) {
   const onClickHandler = () => {
     const lastOperation = undoStack.top();
-    handleMatrixColor({
+    handleCellColorChange({
       idx: lastOperation.idx,
       newColor: lastOperation.color1,
     });

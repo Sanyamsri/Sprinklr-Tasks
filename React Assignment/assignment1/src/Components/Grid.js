@@ -4,7 +4,7 @@ import Cell from "./Cell";
 function Grid({
   ColorSelected,
   matrix,
-  handleMatrixColor,
+  handleCellColorChange,
   undoStack,
   redoStack,
 }) {
@@ -14,7 +14,7 @@ function Grid({
         <Cell
           key={idx}
           backgroundColor={value}
-          handleMatrixColor={handleMatrixColor}
+          handleCellColorChange={handleCellColorChange}
           ColorSelected={ColorSelected}
           idx={idx}
           undoStack={undoStack}
