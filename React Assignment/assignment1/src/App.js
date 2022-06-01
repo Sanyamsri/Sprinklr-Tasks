@@ -44,6 +44,7 @@ function App() {
     undoStack.push(lastOperation);
     redoStack.pop();
   };
+
   return (
     <div className="App center">
       Pixel editor

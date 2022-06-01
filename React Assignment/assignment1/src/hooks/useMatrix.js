@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 const NUM_ROWS = 32,
   NUM_COLS = 32;
 const DEFAULT_COLOR = "#ffffff";
@@ -12,9 +13,9 @@ export const useMatrix = () => {
 
   const handleCellColorChange = ({ index, newColor }) => {
     setMatrix((prevState) => {
-      const copy = [...prevState];
-      copy[index] = newColor;
-      return copy;
+      const newState = [...prevState];
+      newState[index] = newColor;
+      return newState;
     });
   };
 

@@ -1,11 +1,8 @@
 import React from "react";
 
 function ActionButton({ disabled, onClickFunction, children }) {
-  const onClickHandler = () => {
-    onClickFunction();
-  };
   return (
-    <button disabled={disabled} onClick={onClickHandler}>
+    <button disabled={disabled} onClick={onClickFunction}>
       {children}
     </button>
   );
