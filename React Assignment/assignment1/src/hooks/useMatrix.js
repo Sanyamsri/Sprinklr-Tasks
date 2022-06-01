@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 const NUM_ROWS = 32,
   NUM_COLS = 32;
-const DEFAULT_COLOR = "#FFFFFF";
+const DEFAULT_COLOR = "#ffffff";
+
 export const useMatrix = () => {
   const [matrix, setMatrix] = useState(() => {
     if (localStorage.getItem("matrix"))

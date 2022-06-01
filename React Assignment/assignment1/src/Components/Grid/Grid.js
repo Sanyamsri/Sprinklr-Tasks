@@ -13,7 +13,7 @@ function Grid({
       {matrix.map((value, index) => (
         <Cell
           key={index}
-          backgroundColor={value}
+          originalColor={value}
           handleCellColorChange={handleCellColorChange}
           selectedColor={selectedColor}
           index={index}

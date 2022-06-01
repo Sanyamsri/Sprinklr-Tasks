@@ -13,7 +13,7 @@ function RedoButton({ undoStack, handleCellColorChange, redoStack }) {
   };
   return (
     <Button
-      disabled={undoStack.length() === 0}
+      disabled={redoStack.length() === 0}
       onClickFunction={onClickUndoHandler}
     >
       Redo

@@ -1,29 +1,30 @@
 import React, { useState } from "react";
 
+const DEFAULT_COLOR = "#ffffff";
+
 function Cell({
-  backgroundColor,
+  originalColor,
   index,
   handleCellColorChange,
   selectedColor,
   undoStack,
   redoStack,
 }) {
-  const [hoverColor, sethoverColor] = useState("#FFFFFF");
+  const [hoverColor, setHoverColor] = useState(DEFAULT_COLOR);
 
   const onClickHandler = () => {
     handleCellColorChange({ index, newColor: selectedColor });
-    undoStack.push({ index, color1: backgroundColor, color2: selectedColor });
+    undoStack.push({ index, color1: originalColor, color2: selectedColor });
     redoStack.clear();
   };
 
   const onMouseEnterHandler = () => {
-    sethoverColor(selectedColor);
+    setHoverColor(selectedColor);
   };
 
   const onMouseLeaveHandler = () => {
-    sethoverColor("#FFFFFF");
+    setHoverColor("#ffffff");
   };
-
   return (
     <div
       className="cell"
@@ -32,7 +33,7 @@ function Cell({
       onMouseLeave={onMouseLeaveHandler}
       style={{
         backgroundColor: `${
-          hoverColor !== "#FFFFFF" ? hoverColor : backgroundColor
+          hoverColor !== DEFAULT_COLOR ? hoverColor : originalColor
         }`,
       }}
     ></div>

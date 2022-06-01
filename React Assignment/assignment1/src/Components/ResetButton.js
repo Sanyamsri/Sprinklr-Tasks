@@ -8,7 +8,7 @@ function ResetButton({ clearUndoStack, clearRedoStack, clearMatrix }) {
   };
   return (
     <div className="center">
-      <Button onClickFunction={onClickResetHandler} />
+      <Button onClickFunction={onClickResetHandler}>Reset</Button>
     </div>
   );
 }
