@@ -1,27 +1,24 @@
 import "./styles/App.css";
-import { React, useState } from "react";
 import ColorPicker from "./components/ColorPicker";
 import Grid from "./components/Grid";
 import ResetButton from "./components/ResetButton";
 import Actions from "./components/Actions";
 import { useStack } from "./hooks/useStack";
 import { useMatrix } from "./hooks/useMatrix";
+import { useSelectColor } from "./hooks/useSelectColor";
 
 function App() {
-  const [ColorSelected, setColorSelected] = useState("#ffffff");
-  const handleChangeColor = (newColor) => {
-    setColorSelected(newColor);
-  };
   const undoStack = useStack([]);
   const redoStack = useStack([]);
-  const { matrix, handleCellColorChange } = useMatrix();
+  const { matrix, handleCellColorChange, clearMatrix } = useMatrix();
+  const { selectedColor, handleSelectedColorChange } = useSelectColor();
 
   return (
     <div className="App center">
       Pixel editor
-      <ColorPicker handleChangeColor={handleChangeColor} />
+      <ColorPicker handleSelectedColorChange={handleSelectedColorChange} />
       <Grid
-        ColorSelected={ColorSelected}
+        selectedColor={selectedColor}
         matrix={matrix}
         handleCellColorChange={handleCellColorChange}
         undoStack={undoStack}
@@ -33,8 +30,7 @@ function App() {
         handleCellColorChange={handleCellColorChange}
       />
       <ResetButton
-        matrix={matrix}
-        handleCellColorChange={handleCellColorChange}
+        clearMatrix={clearMatrix}
         undoStack={undoStack}
         redoStack={redoStack}
       />

@@ -2,7 +2,7 @@ import React from "react";
 import Cell from "./Cell";
 
 function Grid({
-  ColorSelected,
+  selectedColor,
   matrix,
   handleCellColorChange,
   undoStack,
@@ -15,7 +15,7 @@ function Grid({
           key={index}
           backgroundColor={value}
           handleCellColorChange={handleCellColorChange}
-          ColorSelected={ColorSelected}
+          selectedColor={selectedColor}
           index={index}
           undoStack={undoStack}
           redoStack={redoStack}

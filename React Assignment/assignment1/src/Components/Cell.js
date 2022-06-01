@@ -4,20 +4,20 @@ function Cell({
   backgroundColor,
   index,
   handleCellColorChange,
-  ColorSelected,
+  selectedColor,
   undoStack,
   redoStack,
 }) {
   const [hoverColor, sethoverColor] = useState("#FFFFFF");
 
   const onClickHandler = () => {
-    handleCellColorChange({ index, newColor: ColorSelected });
-    undoStack.push({ index, color1: backgroundColor, color2: ColorSelected });
+    handleCellColorChange({ index, newColor: selectedColor });
+    undoStack.push({ index, color1: backgroundColor, color2: selectedColor });
     redoStack.clear();
   };
 
   const onMouseEnterHandler = () => {
-    sethoverColor(ColorSelected);
+    sethoverColor(selectedColor);
   };
 
   const onMouseLeaveHandler = () => {

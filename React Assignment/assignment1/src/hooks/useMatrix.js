@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
+const NUM_ROWS = 32,
+  NUM_COLS = 32;
+const DEFAULT_COLOR = "#FFFFFF";
 export const useMatrix = () => {
-  const nRows = 32,
-    nCols = 32;
   const [matrix, setMatrix] = useState(() => {
     if (localStorage.getItem("matrix"))
       return JSON.parse(localStorage.getItem("matrix"));
-    return Array.from({ length: nRows * nCols }, () => "#FFFFFF");
+    return Array.from({ length: NUM_ROWS * NUM_COLS }, () => DEFAULT_COLOR);
   });
 
   const handleCellColorChange = ({ index, newColor }) => {
@@ -16,6 +17,12 @@ export const useMatrix = () => {
     });
   };
 
+  const clearMatrix = () => {
+    setMatrix(() => {
+      return Array.from({ length: NUM_ROWS * NUM_COLS }, () => DEFAULT_COLOR);
+    });
+  };
+
   useEffect(() => {
     localStorage.setItem("matrix", JSON.stringify(matrix));
   }, [matrix]);
@@ -23,5 +30,6 @@ export const useMatrix = () => {
   return {
     matrix,
     handleCellColorChange,
+    clearMatrix,
   };
 };

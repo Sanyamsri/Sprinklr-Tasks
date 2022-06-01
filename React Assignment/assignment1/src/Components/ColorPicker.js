@@ -1,8 +1,8 @@
 import React from "react";
 import { CirclePicker } from "react-color";
-function ColorPicker({ handleChangeColor }) {
+function ColorPicker({ handleSelectedColorChange }) {
   const handleChangeComplete = (color) => {
-    handleChangeColor(color.hex);
+    handleSelectedColorChange(color.hex);
   };
 
   return (

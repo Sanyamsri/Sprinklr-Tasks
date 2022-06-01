@@ -1,10 +1,8 @@
 import React from "react";
 
-function ResetButton({ matrix, handleCellColorChange, undoStack, redoStack }) {
+function ResetButton({ undoStack, redoStack, clearMatrix }) {
   const onClickHandler = () => {
-    matrix.forEach((element, index) => {
-      handleCellColorChange({ index, newColor: "#ffffff" });
-    });
+    clearMatrix();
     undoStack.clear();
     redoStack.clear();
   };
