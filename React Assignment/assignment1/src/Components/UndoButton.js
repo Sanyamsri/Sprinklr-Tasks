@@ -1,19 +1,17 @@
 import React from "react";
 
-function Button({ stack, stackHandler, handleMatrixColor }) {
+function Button({ undoStack, handleMatrixColor, redoStack }) {
   const onClickHandler = () => {
-    if (stack.length > 0) {
-      const lastOperation = stack[stack.length - 1];
-      handleMatrixColor({
-        idx: lastOperation.idx,
-        newColor: lastOperation.color1,
-      });
-      stackHandler({ type: "add", stack: "redo" }, stack[stack.length - 1]);
-      stackHandler({ type: "remove", stack: "undo" });
-    }
+    const lastOperation = undoStack.top();
+    handleMatrixColor({
+      idx: lastOperation.idx,
+      newColor: lastOperation.color1,
+    });
+    redoStack.push(lastOperation);
+    undoStack.pop();
   };
   return (
-    <button disabled={stack.length === 0} onClick={onClickHandler}>
+    <button disabled={undoStack.length() === 0} onClick={onClickHandler}>
       undo
     </button>
   );

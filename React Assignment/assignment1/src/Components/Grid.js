@@ -5,8 +5,8 @@ function Grid({
   ColorSelected,
   matrix,
   handleMatrixColor,
-  stackHandler,
   undoStack,
+  redoStack,
 }) {
   return (
     <div className="grid-container">
@@ -17,8 +17,8 @@ function Grid({
           handleMatrixColor={handleMatrixColor}
           ColorSelected={ColorSelected}
           idx={idx}
-          stackHandler={stackHandler}
           undoStack={undoStack}
+          redoStack={redoStack}
         />
       ))}
     </div>

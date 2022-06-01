@@ -5,17 +5,15 @@ function Cell({
   idx,
   handleMatrixColor,
   ColorSelected,
-  stackHandler,
+  undoStack,
+  redoStack,
 }) {
   const [hoverColor, sethoverColor] = useState("#FFFFFF");
 
   const onClickHandler = () => {
     handleMatrixColor({ idx, newColor: ColorSelected });
-    stackHandler(
-      { type: "add", stack: "undo" },
-      { idx, color1: backgroundColor, color2: ColorSelected }
-    );
-    stackHandler({ type: "clear", stack: "redo" });
+    undoStack.push({ idx, color1: backgroundColor, color2: ColorSelected });
+    redoStack.clear();
   };
 
   const onMouseEnterHandler = () => {

@@ -1,21 +1,20 @@
 import React from "react";
 import UndoButton from "./UndoButton";
 import RedoButton from "./RedoButton";
-function Actions({ stackHandler, undoStack, redoStack, handleMatrixColor }) {
+function Actions({ undoStack, redoStack, handleMatrixColor }) {
   return (
     <div>
       <UndoButton
-        stack={undoStack}
+        undoStack={undoStack}
         handleMatrixColor={handleMatrixColor}
-        stackHandler={stackHandler}
         redoStack={redoStack}
       >
         undo
       </UndoButton>
       <RedoButton
-        stack={redoStack}
+        redoStack={redoStack}
         handleMatrixColor={handleMatrixColor}
-        stackHandler={stackHandler}
+        undoStack={undoStack}
       >
         undo
       </RedoButton>

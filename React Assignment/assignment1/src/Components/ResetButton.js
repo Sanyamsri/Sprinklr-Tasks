@@ -1,12 +1,12 @@
 import React from "react";
 
-function ResetButton({ matrix, handleMatrixColor, stackHandler }) {
+function ResetButton({ matrix, handleMatrixColor, undoStack, redoStack }) {
   const onClickHandler = () => {
     matrix.forEach((ele, idx) => {
       handleMatrixColor({ idx, newColor: "#ffffff" });
     });
-    stackHandler({ type: "clear", stack: "undo" });
-    stackHandler({ type: "clear", stack: "redo" });
+    undoStack.clear();
+    redoStack.clear();
   };
   return (
     <div className="center">
