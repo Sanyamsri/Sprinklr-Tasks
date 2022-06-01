@@ -10,13 +10,13 @@ function Grid({
 }) {
   return (
     <div className="grid-container">
-      {matrix.map((value, idx) => (
+      {matrix.map((value, index) => (
         <Cell
-          key={idx}
+          key={index}
           backgroundColor={value}
           handleCellColorChange={handleCellColorChange}
           ColorSelected={ColorSelected}
-          idx={idx}
+          index={index}
           undoStack={undoStack}
           redoStack={redoStack}
         />

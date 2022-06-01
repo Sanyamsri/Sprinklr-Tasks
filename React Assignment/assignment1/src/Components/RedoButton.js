@@ -4,7 +4,7 @@ function Button({ redoStack, handleCellColorChange, undoStack }) {
   const onClickHandler = () => {
     const lastOperation = redoStack.top();
     handleCellColorChange({
-      idx: lastOperation.idx,
+      index: lastOperation.index,
       newColor: lastOperation.color2,
     });
     undoStack.push(lastOperation);

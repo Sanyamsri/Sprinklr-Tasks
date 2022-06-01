@@ -8,10 +8,10 @@ export const useMatrix = () => {
     return Array.from({ length: nRows * nCols }, () => "#FFFFFF");
   });
 
-  const handleCellColorChange = ({ idx, newColor }) => {
+  const handleCellColorChange = ({ index, newColor }) => {
     setMatrix((prevState) => {
       const copy = [...prevState];
-      copy[idx] = newColor;
+      copy[index] = newColor;
       return copy;
     });
   };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function Cell({
   backgroundColor,
-  idx,
+  index,
   handleCellColorChange,
   ColorSelected,
   undoStack,
@@ -11,8 +11,8 @@ function Cell({
   const [hoverColor, sethoverColor] = useState("#FFFFFF");
 
   const onClickHandler = () => {
-    handleCellColorChange({ idx, newColor: ColorSelected });
-    undoStack.push({ idx, color1: backgroundColor, color2: ColorSelected });
+    handleCellColorChange({ index, newColor: ColorSelected });
+    undoStack.push({ index, color1: backgroundColor, color2: ColorSelected });
     redoStack.clear();
   };
 
