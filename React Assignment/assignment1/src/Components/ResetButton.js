@@ -1,14 +1,11 @@
 import React from "react";
 import Button from "./Button";
-function ResetButton({ clearUndoStack, clearRedoStack, clearMatrix }) {
-  const onClickResetHandler = () => {
-    clearMatrix();
-    clearUndoStack();
-    clearRedoStack();
-  };
+function ResetButton({ onClickResetHandler }) {
   return (
     <div className="center">
-      <Button onClickFunction={onClickResetHandler}>Reset</Button>
+      <Button onClickFunction={onClickResetHandler} disabled={false}>
+        Reset
+      </Button>
     </div>
   );
 }

@@ -1,24 +1,16 @@
 import React from "react";
 import Cell from "./Cell";
 
-function Grid({
-  selectedColor,
-  matrix,
-  handleCellColorChange,
-  undoStack,
-  redoStack,
-}) {
+function Grid({ selectedColor, matrix, onCellClickHandler }) {
   return (
     <div className="grid-container">
-      {matrix.map((value, index) => (
+      {matrix.map((initialColor, index) => (
         <Cell
           key={index}
-          originalColor={value}
-          handleCellColorChange={handleCellColorChange}
+          originalColor={initialColor}
           selectedColor={selectedColor}
           index={index}
-          undoStack={undoStack}
-          redoStack={redoStack}
+          onCellClickHandler={onCellClickHandler}
         />
       ))}
     </div>

@@ -13,27 +13,53 @@ function App() {
   const { matrix, handleCellColorChange, clearMatrix } = useMatrix();
   const { selectedColor, handleSelectedColorChange } = useSelectColor();
 
+  const onCellClickHandler = ({ index, originalColor }) => {
+    handleCellColorChange({ index, newColor: selectedColor });
+    undoStack.push({ index, color1: originalColor, color2: selectedColor });
+    redoStack.clear();
+  };
+
+  const onClickResetHandler = () => {
+    clearMatrix();
+    undoStack.clear();
+    redoStack.clear();
+  };
+
+  const onClickUndoHandler = () => {
+    const lastOperation = undoStack.top();
+    handleCellColorChange({
+      index: lastOperation.index,
+      newColor: lastOperation.color1,
+    });
+    redoStack.push(lastOperation);
+    undoStack.pop();
+  };
+
+  const onClickRedoHandler = () => {
+    const lastOperation = redoStack.top();
+    handleCellColorChange({
+      index: lastOperation.index,
+      newColor: lastOperation.color2,
+    });
+    undoStack.push(lastOperation);
+    redoStack.pop();
+  };
   return (
     <div className="App center">
       Pixel editor
       <ColorPicker handleSelectedColorChange={handleSelectedColorChange} />
       <Grid
+        onCellClickHandler={onCellClickHandler}
         selectedColor={selectedColor}
         matrix={matrix}
-        handleCellColorChange={handleCellColorChange}
-        undoStack={undoStack}
-        redoStack={redoStack}
       />
       <Actions
-        undoStack={undoStack}
-        redoStack={redoStack}
-        handleCellColorChange={handleCellColorChange}
+        onClickUndoHandler={onClickUndoHandler}
+        onClickRedoHandler={onClickRedoHandler}
+        undoStackLength={undoStack.length()}
+        redoStackLength={redoStack.length()}
       />
-      <ResetButton
-        clearMatrix={clearMatrix}
-        clearUndoStack={undoStack.clear}
-        clearRedoStack={redoStack.clear}
-      />
+      <ResetButton onClickResetHandler={onClickResetHandler} />
     </div>
   );
 }

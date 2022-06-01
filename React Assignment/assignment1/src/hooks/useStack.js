@@ -29,7 +29,6 @@ export const useStack = (initialValue) => {
   const clear = () => {
     setStack([]);
   };
-
   return {
     pop,
     push,

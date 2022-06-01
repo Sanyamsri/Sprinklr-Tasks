@@ -1,18 +1,21 @@
 import React from "react";
 import UndoButton from "./UndoButton";
 import RedoButton from "./RedoButton";
-function Actions({ undoStack, redoStack, handleCellColorChange }) {
+function Actions({
+  undoStackLength,
+  redoStackLength,
+  onClickUndoHandler,
+  onClickRedoHandler,
+}) {
   return (
     <div>
       <UndoButton
-        undoStack={undoStack}
-        handleCellColorChange={handleCellColorChange}
-        redoStack={redoStack}
+        undoStackLength={undoStackLength}
+        onClickUndoHandler={onClickUndoHandler}
       />
       <RedoButton
-        redoStack={redoStack}
-        handleCellColorChange={handleCellColorChange}
-        undoStack={undoStack}
+        redoStackLength={redoStackLength}
+        onClickRedoHandler={onClickRedoHandler}
       />
     </div>
   );

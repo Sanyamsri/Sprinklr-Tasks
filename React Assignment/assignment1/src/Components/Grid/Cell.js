@@ -2,20 +2,11 @@ import React, { useState } from "react";
 
 const DEFAULT_COLOR = "#ffffff";
 
-function Cell({
-  originalColor,
-  index,
-  handleCellColorChange,
-  selectedColor,
-  undoStack,
-  redoStack,
-}) {
+function Cell({ originalColor, index, selectedColor, onCellClickHandler }) {
   const [hoverColor, setHoverColor] = useState(DEFAULT_COLOR);
 
   const onClickHandler = () => {
-    handleCellColorChange({ index, newColor: selectedColor });
-    undoStack.push({ index, color1: originalColor, color2: selectedColor });
-    redoStack.clear();
+    onCellClickHandler({ index, originalColor });
   };
 
   const onMouseEnterHandler = () => {
@@ -23,7 +14,7 @@ function Cell({
   };
 
   const onMouseLeaveHandler = () => {
-    setHoverColor("#ffffff");
+    setHoverColor(DEFAULT_COLOR);
   };
   return (
     <div
