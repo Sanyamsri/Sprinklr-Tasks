@@ -1,7 +1,8 @@
 import React from "react";
+import ActionButton from "./ActionButton";
 
 function Button({ undoStack, handleCellColorChange, redoStack }) {
-  const onClickHandler = () => {
+  const onClickUndoHandler = () => {
     const lastOperation = undoStack.top();
     handleCellColorChange({
       index: lastOperation.index,
@@ -11,9 +12,12 @@ function Button({ undoStack, handleCellColorChange, redoStack }) {
     undoStack.pop();
   };
   return (
-    <button disabled={undoStack.length() === 0} onClick={onClickHandler}>
-      undo
-    </button>
+    <ActionButton
+      disabled={undoStack.length() === 0}
+      onClickFunction={onClickUndoHandler}
+    >
+      Undo
+    </ActionButton>
   );
 }
 

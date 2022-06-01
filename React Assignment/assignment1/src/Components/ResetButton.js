@@ -1,10 +1,10 @@
 import React from "react";
 
-function ResetButton({ undoStack, redoStack, clearMatrix }) {
+function ResetButton({ clearUndoStack, clearRedoStack, clearMatrix }) {
   const onClickHandler = () => {
     clearMatrix();
-    undoStack.clear();
-    redoStack.clear();
+    clearUndoStack();
+    clearRedoStack();
   };
   return (
     <div className="center">

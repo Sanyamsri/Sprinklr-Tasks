@@ -8,16 +8,12 @@ function Actions({ undoStack, redoStack, handleCellColorChange }) {
         undoStack={undoStack}
         handleCellColorChange={handleCellColorChange}
         redoStack={redoStack}
-      >
-        undo
-      </UndoButton>
+      />
       <RedoButton
         redoStack={redoStack}
         handleCellColorChange={handleCellColorChange}
         undoStack={undoStack}
-      >
-        undo
-      </RedoButton>
+      />
     </div>
   );
 }

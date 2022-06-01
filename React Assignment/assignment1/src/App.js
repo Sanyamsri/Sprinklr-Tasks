@@ -1,8 +1,8 @@
 import "./styles/App.css";
 import ColorPicker from "./components/ColorPicker";
-import Grid from "./components/Grid";
+import Grid from "./components/Grid/Grid";
 import ResetButton from "./components/ResetButton";
-import Actions from "./components/Actions";
+import Actions from "./components/ActionButton/Actions";
 import { useStack } from "./hooks/useStack";
 import { useMatrix } from "./hooks/useMatrix";
 import { useSelectColor } from "./hooks/useSelectColor";
@@ -31,8 +31,8 @@ function App() {
       />
       <ResetButton
         clearMatrix={clearMatrix}
-        undoStack={undoStack}
-        redoStack={redoStack}
+        clearUndoStack={undoStack.clear}
+        clearRedoStack={redoStack.clear}
       />
     </div>
   );
