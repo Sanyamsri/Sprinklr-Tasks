@@ -3,46 +3,46 @@ import ColorPicker from "./components/ColorPicker";
 import Grid from "./components/Grid/Grid";
 import ResetButton from "./components/ResetButton";
 import Actions from "./components/ActionButton/Actions";
-import { useStack } from "./hooks/useStack";
 import { useMatrix } from "./hooks/useMatrix";
 import { useSelectColor } from "./hooks/useSelectColor";
+import { useHistory } from "./hooks/useHistory";
 
 function App() {
-  const undoStack = useStack([]);
-  const redoStack = useStack([]);
+  const {
+    resetHistoryHandler,
+    redoHistoryHandler,
+    undoHistoryHandler,
+    undoStackLength,
+    redoStackLength,
+    insertHistoryHandler,
+  } = useHistory();
   const { matrix, handleCellColorChange, clearMatrix } = useMatrix();
   const { selectedColor, handleSelectedColorChange } = useSelectColor();
 
   const onCellClickHandler = ({ index, originalColor }) => {
+    insertHistoryHandler({ index, selectedColor, originalColor });
     handleCellColorChange({ index, newColor: selectedColor });
-    undoStack.push({ index, color1: originalColor, color2: selectedColor });
-    redoStack.clear();
   };
 
   const onClickResetHandler = () => {
     clearMatrix();
-    undoStack.clear();
-    redoStack.clear();
+    resetHistoryHandler();
   };
 
   const onClickUndoHandler = () => {
-    const lastOperation = undoStack.top();
+    const lastOperation = undoHistoryHandler();
     handleCellColorChange({
       index: lastOperation.index,
       newColor: lastOperation.color1,
     });
-    redoStack.push(lastOperation);
-    undoStack.pop();
   };
 
   const onClickRedoHandler = () => {
-    const lastOperation = redoStack.top();
+    const lastOperation = redoHistoryHandler();
     handleCellColorChange({
       index: lastOperation.index,
       newColor: lastOperation.color2,
     });
-    undoStack.push(lastOperation);
-    redoStack.pop();
   };
 
   return (
@@ -57,8 +57,8 @@ function App() {
       <Actions
         onClickUndoHandler={onClickUndoHandler}
         onClickRedoHandler={onClickRedoHandler}
-        undoStackLength={undoStack.length()}
-        redoStackLength={redoStack.length()}
+        undoStackLength={undoStackLength}
+        redoStackLength={redoStackLength}
       />
       <ResetButton onClickResetHandler={onClickResetHandler} />
     </div>
