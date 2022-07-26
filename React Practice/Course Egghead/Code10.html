@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        border: 1px solid #333;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+      }
+      .box--large {
+        width: 270px;
+        height: 270px;
+      }
+      .box--medium {
+        width: 180px;
+        height: 180px;
+      }
+      .box--small {
+        width: 90px;
+        height: 90px;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div id="root">
+      
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.min.js"
+      integrity="sha512-ssNhh7jlzc+K93ckIlSXFHHz6fSFv0l619WOv8xbFNRbFOujbasb42LVMOggDrQR1ScJncoWb+KAJx1uF3ipjw=="
+      crossorigin="anonymous"
+    ></script>
+    
+    <script type="text/babel">
+      const rootElement = document.getElementById("root");
+      const Box=({size,color})=>{
+        return <div className={`box box--${size}`} style={{backgroundColor:`${color}`}}>{size} {color} box</div>
+      }
+      const element=
+      (<div>
+        <Box size="small" color="lightblue"/>
+        <Box size="medium" color="pink"/>
+        <Box size="large" color="orange"/>
+    </div>)
+      ReactDOM.render(element,rootElement)
+    </script>
+  </body>
+</html>

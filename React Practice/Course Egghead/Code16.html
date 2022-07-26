@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.min.js"
+      integrity="sha512-ssNhh7jlzc+K93ckIlSXFHHz6fSFv0l619WOv8xbFNRbFOujbasb42LVMOggDrQR1ScJncoWb+KAJx1uF3ipjw=="
+      crossorigin="anonymous"
+    ></script>
+
+    <script type="text/babel">
+      const rootElement = document.getElementById("root");
+      const useLocalStorageItem = (key) => {
+        const [state, setState] = React.useState(
+          () => window.localStorage.getItem(key) || ""
+        );
+        React.useEffect(() => {
+          window.localStorage.setItem(key, state);
+        }, [state]);
+        return [state, setState];
+      };
+      function Greeting() {
+        const [name, setName] = useLocalStorageItem("name");
+        const onChangeHandler = (e) => {
+          name = setName(e.target.value);
+        };
+        return (
+          <>
+            <form>
+              <label htmlFor="name">Name: </label>
+              <input onChange={onChangeHandler} id="name" value={name} />
+            </form>
+            {name ? <strong> {name} </strong> : "please type your name"}
+          </>
+        );
+      }
+
+      function App() {
+        const [count, setcount] = React.useState(0);
+        return (
+          <div>
+            <button
+              onClick={() => {
+                setcount((prevCount) => prevCount + 1);
+              }}
+            >
+              {count}
+            </button>
+            <Greeting />
+          </div>
+        );
+      }
+
+      function renderApp() {
+        ReactDOM.render(<App />, document.getElementById("root"));
+      }
+      renderApp();
+    </script>
+  </body>
+</html>
